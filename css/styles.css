@@ -1,4 +1,4 @@
-body{
+body {
   font-family: 'Lato', sans-serif;
 }
 
@@ -15,14 +15,21 @@ body::-webkit-scrollbar-thumb {
   outline: 1px solid #F07427;
 }
 
-.form-control{
+.form-control {
   color: #838996;
 }
 
-.book__img{
+.book__img {
   width: 150px;
   margin: 0 auto;
   border-radius: 15px;
   height: 180px;
   object-fit: cover;
+}
+
+.book__language {
+  white-space: nowrap;
+  text-overflow: ellipsis;
+  max-width: 85px;
+  margin-bottom: 0;
 }
