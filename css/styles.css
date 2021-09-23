@@ -50,3 +50,7 @@
   width: 20px;
   height: 20px;
 }
+
+.js-bookmark-button.active{
+  background-image: url(/icons/star.svg);
+}

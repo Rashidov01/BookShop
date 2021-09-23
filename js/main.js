@@ -9,6 +9,9 @@ const elBookCountryInput = elBookSearchForm.querySelector('.js-book-country-inpu
 const elBookLanguageInput = elBookSearchForm.querySelector('.js-book-language-input');
 
 
+
+
+
 // function findMovies (titleRegex) {
 //   return movies.filter(movie => {
 //     const meetsCriteria = movie.title.match(titleRegex) && (elGenresSelect.value === 'All' || movie.categories.includes(elGenresSelect.value)) && (elMinYearInput.value.trim() === '' || movie.year >= Number(elMinYearInput.value)) && (elMaxYearInput.value.trim() === '' || movie.year <= Number(elMaxYearInput.value));
@@ -23,7 +26,7 @@ let foundBooks = books.slice(0, 50);
 elBooksItemTemplate = document.querySelector('#books-item-template').content;
 
 // Functions
-function showBooks (movies, titleRegex = '') {
+function showBooks(movies, titleRegex = '') {
   elBooksList.innerHTML = '';
   const elBooksFragment = document.createDocumentFragment();
 
@@ -38,7 +41,8 @@ function showBooks (movies, titleRegex = '') {
     elNewBooksItem.querySelector('.book__year').textContent = book.year;
     elNewBooksItem.querySelector('.book__pages').textContent = book.pages;
     elNewBooksItem.querySelector('.book__language').textContent = book.language;
-
+    elNewBooksItem.querySelector('.wikipedia-link').href = book.link;
+    elNewBooksItem.querySelector('.wikipedia-link').target = '_blank';
 
     elBooksFragment.appendChild(elNewBooksItem);
   }
@@ -46,13 +50,13 @@ function showBooks (movies, titleRegex = '') {
   elBooksList.appendChild(elBooksFragment);
 };
 
-function findMovies (titleRegex){
+function findMovies(titleRegex) {
   return books.filter(book => {
 
   });
 };
 
- books.forEach((element, index) => {
+books.forEach((element, index) => {
   element.id = index;
 });
 
