@@ -20,14 +20,33 @@
   color: #838996;
 }
 
-/* .book__img {
-  margin: 0 auto;
-  object-fit: cover;
-} */
-
 .book__language {
   white-space: nowrap;
   text-overflow: ellipsis;
   max-width: 85px;
   margin-bottom: 0;
+}
+
+.wikipedia-link{
+  display: flex;
+  align-items: center;
+}
+
+.wikipedia-link::after{
+  content: '';
+  background-image: url(/icons/wiki-logo.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 18px;
+  height: 18px;
+  display: inline-block;
+  margin-left: 6px;
+}
+
+.js-bookmark-button{
+  background-image: url(/icons/star-border.svg);
+  background-repeat: no-repeat;
+  background-size: contain;
+  width: 20px;
+  height: 20px;
 }
