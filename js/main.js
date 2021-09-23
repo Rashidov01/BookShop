@@ -15,8 +15,8 @@ function showBooks () {
   for (let book of books) {
     const elNewBooksItem = elBooksItemTemplate.cloneNode(true);
 
-    // elNewBooksItem.querySelector('.book__img').src = imgLink;
-    // elNewBooksItem.querySelector('.book__img').alt = `${book.title} poster`;
+    elNewBooksItem.querySelector('.book__img').src = book.imageLink;
+    elNewBooksItem.querySelector('.book__img').alt = `${book.title} poster`;
     elNewBooksItem.querySelector('.book__title').textContent = book.title;
     elNewBooksItem.querySelector('.book__author').textContent = book.author;
     elNewBooksItem.querySelector('.book__year').textContent = book.year;
