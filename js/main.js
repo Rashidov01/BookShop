@@ -1,3 +1,5 @@
+const languages = [];
+
 let elBooksList = document.querySelector('.books__list');
 
 // search-input
@@ -5,14 +7,61 @@ const elBookSearchForm = document.querySelector('.js-book-search-form');
 const elBookSearchInput = elBookSearchForm.querySelector('.js-book-search-input');
 const elBookSelect = elBookSearchForm.querySelector('.select');
 const elBookYearInput = elBookSearchForm.querySelector('.js-book-year-input');
-const elBookCountryInput = elBookSearchForm.querySelector('.js-book-country-input');
-const elBookLanguageInput = elBookSearchForm.querySelector('.js-book-language-input');
+const elBookAuthorInput = elBookSearchForm.querySelector('.js-book-author-input');
+const elBookLanguageSelect = elBookSearchForm.querySelector('.js-book-language-select');
 
 
 // template
 elBooksItemTemplate = document.querySelector('#books-item-template').content;
 
 // Functions
+// function getUniqueLang() {
+//   // const lang = [];
+//   book.language.forEach(book => {
+//     // lang.push(book.language);
+//     // lang.forEach(count => {
+
+//     // });
+//     if (!books.includes(count)){
+//       books.push(count)
+//     }
+//   });
+// }
+
+// function getUniqueLang () {
+//   books.forEach(book => {
+//     books.language.forEach(language => {
+//       if (!languages.includes(language)) {
+//         languages.push(language);
+//       }
+//     });
+//   });
+//   genres.sort();
+// }
+
+function findLanguages(){
+
+  for (const book of books) {
+    if(!languages.includes(book.language)) {
+      languages.push(book.language);
+    }
+  }
+};
+
+function showLanguages() {
+
+  const elLanguagesFragment = document.createDocumentFragment();
+
+  languages.forEach(opt => {
+    const elLanguageOption = document.createElement('option');
+    elLanguageOption.textContent = opt;
+    elLanguageOption.value = opt;
+    elLanguagesFragment.appendChild(elLanguageOption);
+  })
+  elBookLanguageSelect.appendChild(elLanguagesFragment);
+
+}
+
 function showBooks(books) {
   elBooksList.innerHTML = '';
   const elBooksFragment = document.createDocumentFragment();
@@ -38,7 +87,7 @@ function showBooks(books) {
 
 function findBooks(titleRegex) {
   return books.filter( book => {
-    const meetsCriteria = book.title.match(titleRegex)
+    const meetsCriteria = book.title.match(titleRegex) && book.year === Number(elBookYearInput.value) && (elBookLanguageSelect.value = 'All' || book.language.includes(elBookLanguageSelect.value))
     return meetsCriteria;
   });
 };
@@ -66,5 +115,7 @@ books.forEach((element, index) => {
 
 
 // results
+// getUniqueLang();
+findLanguages();
+showLanguages();
 showBooks(books);
-

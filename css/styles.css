@@ -41,6 +41,15 @@
   display: block;
 }
 
+.navbar-light .navbar-toggler{
+  color: #F0EAD6;
+}
+
+.navbar-toggler{
+  padding-right: 4px;
+  padding-left: 4px;
+}
+
 .js-bookmark-button.active{
   background-image: url(/icons/star.svg);
 }
