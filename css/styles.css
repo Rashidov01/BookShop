@@ -45,6 +45,16 @@
   background-image: url(/icons/star.svg);
 }
 
+
+@media only screen and (max-width:768px) {
+  .header__bottom{
+    display: none !important;
+  }
+  .search-icon{
+    display: block !important;
+  }
+}
+
 @media only screen and (max-width:575px) {
   .card {
     display: flex !important;
