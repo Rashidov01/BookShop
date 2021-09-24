@@ -9,27 +9,13 @@ const elBookCountryInput = elBookSearchForm.querySelector('.js-book-country-inpu
 const elBookLanguageInput = elBookSearchForm.querySelector('.js-book-language-input');
 
 
-
-
-
-// function findMovies (titleRegex) {
-//   return movies.filter(movie => {
-//     const meetsCriteria = movie.title.match(titleRegex) && (elGenresSelect.value === 'All' || movie.categories.includes(elGenresSelect.value)) && (elMinYearInput.value.trim() === '' || movie.year >= Number(elMinYearInput.value)) && (elMaxYearInput.value.trim() === '' || movie.year <= Number(elMaxYearInput.value));
-//     return meetsCriteria;
-//   });
-// }
-
-// books
-let foundBooks = books.slice(0, 50);
-
 // template
 elBooksItemTemplate = document.querySelector('#books-item-template').content;
 
 // Functions
-function showBooks(movies, titleRegex = '') {
+function showBooks(books) {
   elBooksList.innerHTML = '';
   const elBooksFragment = document.createDocumentFragment();
-
 
   for (let book of books) {
     const elNewBooksItem = elBooksItemTemplate.cloneNode(true);
@@ -50,16 +36,35 @@ function showBooks(movies, titleRegex = '') {
   elBooksList.appendChild(elBooksFragment);
 };
 
-function findMovies(titleRegex) {
-  return books.filter(book => {
-
+function findBooks(titleRegex) {
+  return books.filter( book => {
+    const meetsCriteria = book.title.match(titleRegex)
+    return meetsCriteria;
   });
 };
+
+function bookFind (evt){
+  evt.preventDefault();
+
+  const titleRegex = new RegExp (elBookSearchInput.value.trim(), 'gi');
+  const foundBooks = findBooks(titleRegex);
+
+  if(foundBooks.length > 0){
+    showBooks(foundBooks,titleRegex)
+  } else{
+    elBooksList.innerHTML = '<div class="col-12">No book found</div>';
+  }
+}
+
+  if (elBookSearchForm){
+    elBookSearchForm.addEventListener('submit', bookFind);
+  }
 
 books.forEach((element, index) => {
   element.id = index;
 });
 
 
-// resuts
-showBooks(foundBooks, '');
+// results
+showBooks(books);
+

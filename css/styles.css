@@ -27,30 +27,44 @@
   margin-bottom: 0;
 }
 
-.wikipedia-link{
-  display: flex;
-  align-items: center;
-}
-
-.wikipedia-link::after{
-  content: '';
-  background-image: url(/icons/wiki-logo.svg);
-  background-repeat: no-repeat;
-  background-size: contain;
-  width: 18px;
-  height: 18px;
-  display: inline-block;
-  margin-left: 6px;
-}
-
 .js-bookmark-button{
   background-image: url(/icons/star-border.svg);
   background-repeat: no-repeat;
   background-size: contain;
   width: 20px;
   height: 20px;
+  display: none;
+  transition: all ease 0.5s;
+}
+
+.book:hover .js-bookmark-button{
+  display: block;
 }
 
 .js-bookmark-button.active{
   background-image: url(/icons/star.svg);
+}
+
+@media only screen and (max-width:575px) {
+  .card {
+    display: flex !important;
+    flex-direction: row !important;
+    padding: 0 !important;
+  }
+
+  .img-holder{
+    padding: 10px;
+  }
+}
+
+@media only screen and (max-width:420px) {
+  .card {
+    display: flex !important;
+    flex-direction: column !important;
+    padding-top: 10px !important;
+  }
+
+  .img-holder{
+    padding: 10px;
+  }
 }
