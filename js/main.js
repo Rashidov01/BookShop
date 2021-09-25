@@ -14,7 +14,7 @@ const elBookLanguageSelect = elBookSearchForm.querySelector('.js-book-language-s
 // template
 elBooksItemTemplate = document.querySelector('#books-item-template').content;
 
-
+// functions
 function findLanguages(){
   for (const book of books) {
     if(!languages.includes(book.language)) {
@@ -26,10 +26,10 @@ function findLanguages(){
 function showLanguages() {
   const elLanguagesFragment = document.createDocumentFragment();
 
-  languages.forEach(opt => {
+  languages.forEach(language => {
     const elLanguageOption = document.createElement('option');
-    elLanguageOption.textContent = opt;
-    elLanguageOption.value = opt;
+    elLanguageOption.textContent = language;
+    elLanguageOption.value = language;
     elLanguagesFragment.appendChild(elLanguageOption);
   })
   elBookLanguageSelect.appendChild(elLanguagesFragment);
@@ -48,12 +48,11 @@ function showBooks(books, titleRegex = '') {
 
     if (titleRegex.source !== '(?:)' && titleRegex) {
       console.log(titleRegex.source);
-      elNewBooksItem.querySelector('.book__title').innerHTML = book.title.replace(titleRegex, `<mark class="p-0" style="background-color: yellow;">${titleRegex.source}</mark>`);
+      elNewBooksItem.querySelector('.book__title').innerHTML = book.title.replace(titleRegex, `<mark class="p-0 bg-warning text-white">${titleRegex.source}</mark>`);
     } else {
-      elNewBooksItem.querySelector('.book__title').textContent = book.title;
+      elNewBooksItem.querySelector('.book__title').innerHTML = book.title;
     }
 
-    elNewBooksItem.querySelector('.book__title').textContent = book.title;
     elNewBooksItem.querySelector('.book__author').textContent = book.author;
     elNewBooksItem.querySelector('.book__year').textContent = book.year;
     elNewBooksItem.querySelector('.book__pages').textContent = book.pages;
@@ -68,18 +67,17 @@ function showBooks(books, titleRegex = '') {
 };
 
 function findBooks(titleRegex) {
-  let meetsCriteria;
   return books.filter( book => {
-    if (meetsCriteria = book.title.match(titleRegex) && book.year === Number(elBookYearInput.value))
-    return meetsCriteria;
+    return ( book.title.match(titleRegex) && (book.year === Number(elBookYearInput.value) || elBookYearInput.value === '') && (elBookLanguageSelect.value === 'all' || elBookLanguageSelect.value === book.language))
   });
 };
 
-function bookFind (evt){
+function searchInputSubmit (evt){
   evt.preventDefault();
 
-  titleRegex = new RegExp (elBookSearchInput.value.trim(), 'gi');
+  const titleRegex = new RegExp (elBookSearchInput.value.trim(), 'gi');
   const foundBooks = findBooks(titleRegex);
+  console.log(foundBooks);
 
   if(foundBooks.length > 0){
     showBooks(foundBooks,titleRegex)
@@ -89,7 +87,7 @@ function bookFind (evt){
 }
 
   if (elBookSearchForm){
-    elBookSearchForm.addEventListener('submit', bookFind);
+    elBookSearchForm.addEventListener('submit', searchInputSubmit);
   }
 
 books.forEach((element, index) => {
@@ -99,6 +97,6 @@ books.forEach((element, index) => {
 
 // results
 
-showBooks(books, titleRegex);
+showBooks(books, '');
 findLanguages();
 showLanguages();
