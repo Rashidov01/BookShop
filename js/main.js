@@ -1,5 +1,5 @@
 const languages = [];
-
+let titleRegex;
 let elBooksList = document.querySelector('.books__list');
 
 // search-input
@@ -14,33 +14,8 @@ const elBookLanguageSelect = elBookSearchForm.querySelector('.js-book-language-s
 // template
 elBooksItemTemplate = document.querySelector('#books-item-template').content;
 
-// Functions
-// function getUniqueLang() {
-//   // const lang = [];
-//   book.language.forEach(book => {
-//     // lang.push(book.language);
-//     // lang.forEach(count => {
-
-//     // });
-//     if (!books.includes(count)){
-//       books.push(count)
-//     }
-//   });
-// }
-
-// function getUniqueLang () {
-//   books.forEach(book => {
-//     books.language.forEach(language => {
-//       if (!languages.includes(language)) {
-//         languages.push(language);
-//       }
-//     });
-//   });
-//   genres.sort();
-// }
 
 function findLanguages(){
-
   for (const book of books) {
     if(!languages.includes(book.language)) {
       languages.push(book.language);
@@ -49,7 +24,6 @@ function findLanguages(){
 };
 
 function showLanguages() {
-
   const elLanguagesFragment = document.createDocumentFragment();
 
   languages.forEach(opt => {
@@ -62,7 +36,7 @@ function showLanguages() {
 
 }
 
-function showBooks(books) {
+function showBooks(books, titleRegex = '') {
   elBooksList.innerHTML = '';
   const elBooksFragment = document.createDocumentFragment();
 
@@ -71,6 +45,14 @@ function showBooks(books) {
 
     elNewBooksItem.querySelector('.book__img').src = book.imageLink;
     elNewBooksItem.querySelector('.book__img').alt = `${book.title} poster`;
+
+    if (titleRegex.source !== '(?:)' && titleRegex) {
+      console.log(titleRegex.source);
+      elNewBooksItem.querySelector('.book__title').innerHTML = book.title.replace(titleRegex, `<mark class="p-0" style="background-color: yellow;">${titleRegex.source}</mark>`);
+    } else {
+      elNewBooksItem.querySelector('.book__title').textContent = book.title;
+    }
+
     elNewBooksItem.querySelector('.book__title').textContent = book.title;
     elNewBooksItem.querySelector('.book__author').textContent = book.author;
     elNewBooksItem.querySelector('.book__year').textContent = book.year;
@@ -86,8 +68,9 @@ function showBooks(books) {
 };
 
 function findBooks(titleRegex) {
+  let meetsCriteria;
   return books.filter( book => {
-    const meetsCriteria = book.title.match(titleRegex) && book.year === Number(elBookYearInput.value) && (elBookLanguageSelect.value = 'All' || book.language.includes(elBookLanguageSelect.value))
+    if (meetsCriteria = book.title.match(titleRegex) && book.year === Number(elBookYearInput.value))
     return meetsCriteria;
   });
 };
@@ -95,7 +78,7 @@ function findBooks(titleRegex) {
 function bookFind (evt){
   evt.preventDefault();
 
-  const titleRegex = new RegExp (elBookSearchInput.value.trim(), 'gi');
+  titleRegex = new RegExp (elBookSearchInput.value.trim(), 'gi');
   const foundBooks = findBooks(titleRegex);
 
   if(foundBooks.length > 0){
@@ -115,7 +98,7 @@ books.forEach((element, index) => {
 
 
 // results
-// getUniqueLang();
+
+showBooks(books, titleRegex);
 findLanguages();
 showLanguages();
-showBooks(books);

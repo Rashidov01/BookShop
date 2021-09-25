@@ -50,6 +50,49 @@
   padding-left: 4px;
 }
 
+.nav__title{
+  color: #F07427;
+}
+
+.js-book-search-form{
+  background-color: #F0EAD6;
+}
+
+.js-book-search-input{
+  border: 1px solid #F07427;
+  border-radius: 15px;
+}
+
+.js-book-author-input{
+  border-radius: 15px;
+}
+
+.js-book-year-input{
+  border-radius: 15px;
+}
+
+.book{
+  border-radius: 15px;
+  border:1px solid #F0EAD6;
+}
+
+.book__title{
+  color: #F07427;
+}
+
+.book__year, .book__pages, .book__language{
+  font-size: 14px;
+}
+
+.search__btn{
+  border-radius: 15px;
+  cursor: pointer;
+}
+
+.js-book-language-select{
+  border-radius: 15px;
+}
+
 .js-bookmark-button.active{
   background-image: url(/icons/star.svg);
 }
@@ -66,8 +109,7 @@
     flex-direction: row !important;
     padding: 0 !important;
   }
-
-  .img-holder{
+  .img-holder {
     padding: 10px;
   }
 }

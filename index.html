@@ -22,7 +22,7 @@
       <nav class="navbar navbar-expand-md navbar-light bg-light">
         <a class="text-decoration-none d-flex align-items-center navbar-brand" href="/index.html">
           <img class="me-2" src="/icons/book-icon.svg" alt="book icon">
-          <h1 class="h3 mb-0 text-secondary">Online<span style="color: #F07427;">Books</span></h1>
+          <h1 class="h3 mb-0 text-secondary">Online<span class="nav__title">Books</span></h1>
         </a>
         <div class="header__btns">
           <button class="btn d-md-none p-0" type="button" data-bs-toggle="collapse" href="#collapseExample">
@@ -30,7 +30,7 @@
           </button>
           <button class="navbar-toggler btn-sm border-0 p-0 ms-1" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
-            aria-label="Toggle navigation">
+            aria-label="toggle navigation">
             <span class="navbar-toggler-icon"></span>
           </button>
         </div>
@@ -62,50 +62,45 @@
 
     <!-- collapse -->
     <div class="collapse" id="collapseExample">
-      <form class="mb-4 js-book-search-form py-5" action="https://echo.htmlacademy.ru" method="GET"
-      style="background-color: #F0EAD6;">
-      <div class="container-xl">
+      <form class="mb-4 js-book-search-form py-5" action="https://echo.htmlacademy.ru" method="GET">
+        <div class="container-xl">
 
-        <div class="row">
-          <div class="input-group">
-            <input type="text" class="form-control js-book-search-input me-2 col-md-11" placeholder="Search"
-              aria-label="Book title" aria-describedby="search__btn"
-              style="border: 1px solid #F07427; border-radius:15px;">
-            <button class="btn btn-outline-secondary col-md-1 btn-sm" type="submit" id="search__btn"
-              style="border-radius: 15px; cursor: pointer;">Find</button>
+          <div class="row">
+            <div class="input-group">
+              <input type="text" class="form-control js-book-search-input me-2 col-md-11" placeholder="Search"
+                aria-label="book title" aria-describedby="search__btn">
+              <button class="search__btn btn btn-outline-secondary col-md-1 btn-sm" type="submit"
+                id="search__btn">Find</button>
+            </div>
           </div>
-        </div>
 
-        <div class="row mt-3 ">
-          <div class="col-md-3 mb-2 mb-md-0">
-            <select class="form-control select" name="genre" aria-label="Genre" style="border-radius: 15px;">
-              <option value="Sort-by" selected disabled>Sort by...</option>
-              <option value="Year">Year</option>
-              <option value="Alphabet">Alphabet</option>
-              <option value="Pages">Pages</option>
-            </select>
-          </div>
-          <div class="col-md-3 mb-2 mb-md-0">
-            <input class="form-control js-book-year-input" type="number" name="year" aria-label="year"
-              placeholder="Year" style="border-radius: 15px;">
-          </div>
-          <div class="col-md-3 mb-2 mb-md-0">
-            <input class="form-control js-book-author-input" type="text" name="Author" aria-label="Author"
-              placeholder="Author" style="border-radius: 15px;">
-          </div>
-          <div class="col-md-3 mb-2 mb-md-0">
-            <!-- <input class="form-control js-book-language-input" type="text" name="Language" aria-label="Language"
-              placeholder="Language" style="border-radius: 15px;"> -->
-
-              <select class="form-control js-book-language-select" name="language" aria-label="Language" style="border-radius: 15px;">
+          <div class="row mt-3 ">
+            <div class="col-md-3 mb-2 mb-md-0">
+              <select class="form-control select" name="genre" aria-label="genre" style="border-radius: 15px;">
+                <option value="sort-by" selected disabled>Sort by...</option>
+                <option value="year">Year</option>
+                <option value="alphabet">Alphabet</option>
+                <option value="pages">Pages</option>
+              </select>
+            </div>
+            <div class="col-md-3 mb-2 mb-md-0">
+              <input class="form-control js-book-year-input" type="number" name="year" aria-label="year"
+                placeholder="Year">
+            </div>
+            <div class="col-md-3 mb-2 mb-md-0">
+              <input class="form-control js-book-author-input" type="text" name="author" aria-label="author"
+                placeholder="Author">
+            </div>
+            <div class="col-md-3 mb-2 mb-md-0">
+              <select class="form-control js-book-language-select" name="language" aria-label="language">
                 <option value="all" selected>All</option>
               </select>
+            </div>
+
           </div>
 
         </div>
-
-      </div>
-    </form>
+      </form>
     </div>
 
     <div class="container-xl">
@@ -119,33 +114,30 @@
   <!-- template -->
   <template id="books-item-template">
     <div class="books__item col-sm-6 col-md-4 col-lg-3 mb-4">
-      <div class="book card h-100 pt-3" style="border-radius: 15px; border:1px solid #F0EAD6;">
+      <div class="book card h-100 pt-3">
         <div class="img-holder px-2 px-sm-0 mx-auto">
           <img class="book__img" src="images/gullivers-travels.jpg" width="150" height="200">
         </div>
         <div class="card-body card__inner d-flex flex-column">
-          <h3 class="book__title h5 card-title mb-1 fw-bold text-truncate" style="color: #F07427;">Book name</h3>
+          <h3 class="book__title h5 card-title mb-1 fw-bold text-truncate">Book name</h3>
 
           <span class="card-text book__author text-secondary mb-3"></span>
 
           <div class="d-flex align-items-center justify-content-between mb-4">
 
             <div class="d-flex align-items-center">
-              <img src="/icons/year.svg" class="mb-0" width="15" height="15">
-              <span class="book__year card-text text-secondary ms-1" style="font-size: 14px;"></span>
-              </img>
+              <img src="/icons/year.svg" class="mb-0" width="15" height="15"></img>
+              <span class="book__year card-text text-secondary ms-1"></span>
             </div>
 
             <div class="d-flex align-items-center">
-              <img src="/icons/pages.svg" class="mb-0" width="15" height="15">
-              <span class="book__pages card-text text-secondary ms-1" style="font-size: 14px;"></span>
-              </img>
+              <img src="/icons/pages.svg" class="mb-0" width="15" height="15"></img>
+              <span class="book__pages card-text text-secondary ms-1"></span>
             </div>
 
             <div class="d-flex align-items-center">
-              <img src="/icons/language.svg" class="mb-0" width="15" height="15">
-              <span class="book__language card-text text-secondary ms-1 text-truncate" style="font-size: 14px;"></span>
-              </img>
+              <img src="/icons/language.svg" class="mb-0" width="15" height="15"></img>
+              <span class="book__language card-text text-secondary ms-1 text-truncate"></span>
             </div>
           </div>
 
